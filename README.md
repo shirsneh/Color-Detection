@@ -17,5 +17,5 @@ Enter the image path that corresponds to your desired image and click on differe
 
 video of the application run:
 
-https://www.loom.com/share/986ef6c84db34b8ab7d25a5a860a9619
+https://www.loom.com/share/4d91af0b2d40428fadb135aa5f310a81
 
