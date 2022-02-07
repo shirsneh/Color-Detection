@@ -15,24 +15,26 @@ Label(root, text='Please enter your image path', font='david 16 bold', bg='#90EE
 img_path = StringVar()
 Entry(root, font='david 10', textvariable=img_path, width=40, bg='ghost white').place(x=120, y=80)
 
+# Declaring global variables (are used later on)
+clicked = False
+notDone = True
+r = g = b = xpos = ypos = 0
+
 
 # Function to show image
 def showImage():
     # Reading the image with opencv
     global img
     img = cv2.imread(img_path.get())
-    while 1:
+    while notDone:
         getImage()
         # Break the loop when user hits 'esc' key
         if cv2.waitKey(20) & 0xFF == 27:
             break
 
 
-Button(root, font='david 10 bold', text='Get image', width=8, height=2, padx=2, bg='#3CB371', command=showImage).place(x=150, y=120)
-
-# Declaring global variables (are used later on)
-clicked = False
-r = g = b = xpos = ypos = 0
+Button(root, font='david 10 bold', text='Get image', width=8, height=2, padx=2, bg='#3CB371', command=showImage).place(
+    x=150, y=120)
 
 # Reading csv file with pandas and giving names to each column
 index = ["color", "color_name", "hex", "R", "G", "B"]
@@ -90,11 +92,13 @@ def getImage():
 
 # Function to exit window
 def Exit():
+    global notDone
+    notDone = False
     cv2.destroyAllWindows()
     root.destroy()
 
 
 # exit button
 Button(root, font='david 10 bold', text='Exit', width=8, height=2, padx=2, command=Exit, bg='#3CB371').place(x=250,
-                                                                                                           y=120)
+                                                                                                             y=120)
 root.mainloop()
